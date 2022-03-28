@@ -1,18 +1,18 @@
 package com.indracompany.treinamento.controller.rest;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
+import com.indracompany.treinamento.model.entity.Historico_Andre_Farias;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
 import com.indracompany.treinamento.model.dto.ConsultaContaBancariaDTO;
 import com.indracompany.treinamento.model.dto.DepositoDTO;
@@ -45,13 +45,13 @@ public class ContaBancariaRest extends GenericCrudRest<ContaBancaria, Long, Cont
 	
 	@PutMapping(value = "/deposito", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Void> depositar(@RequestBody DepositoDTO dto){
-		contaBancariaService.depositar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor());
+		contaBancariaService.depositar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor(), false);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/saque", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Void> sacar(@RequestBody SaqueDTO dto){
-		contaBancariaService.sacar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor());
+		contaBancariaService.sacar(dto.getAgencia(), dto.getNumeroConta(), dto.getValor(), false);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
