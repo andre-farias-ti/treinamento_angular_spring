@@ -74,25 +74,6 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 				TipoOperacaoEnum.DEPOSITO, dto.getValor());
 	}
 
-	@Transactional(rollbackFor = Exception.class)
-	public File extrato() {
-
-		Document documentoPDF = new Document();
-
-		try{
-			PdfWriter.getInstance(documentoPDF,new FileOutputStream("teste.pdf"));
-			documentoPDF.open();
-			Paragraph paragraph = new Paragraph("Olá mundo");
-			documentoPDF.add(paragraph);
-			documentoPDF.close();
-
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-
-		return new File("/Users/andrefarias/Documents/ambiente/treinamento_202201/teste.pdf");
-	}
-	
 	public ContaBancaria consultarConta (String agencia, String numeroConta) {
 		ContaBancaria c = repository.findByAgenciaAndNumero(agencia, numeroConta);
 		
