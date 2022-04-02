@@ -1,5 +1,7 @@
 package com.indracompany.treinamento.model.service;
 
+import com.indracompany.treinamento.exception.AplicacaoException;
+import com.indracompany.treinamento.exception.ExceptionValidacoes;
 import com.indracompany.treinamento.model.dto.Historico_Andre_Farias_DTO;
 import com.indracompany.treinamento.model.entity.ContaBancaria;
 import com.indracompany.treinamento.model.entity.Historico_Andre_Farias;
@@ -83,9 +85,13 @@ public class Historico_Andre_Farias_Service extends GenericCrudService<Historico
         List<Historico_Andre_Farias> lista = new ArrayList<>();
         List<Historico_Andre_Farias_DTO> listaDTO = new ArrayList<>();
 
-        lista = repository.buscarPordata(conta,
-                ConverterData.convertStringDateInicial(dataIni),
-                ConverterData.convertStringDateFinal(dataFim));
+        lista = repository.findByContaBancariaAndDataBetween(conta,
+                ConverterData.convertStringDate(dataIni),
+                ConverterData.convertStringDate(dataFim));
+
+        if(lista.isEmpty()){
+            throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
+        }
 
             listaDTO = lista.stream().map(h ->
                                      Historico_Andre_Farias_DTO.builder()

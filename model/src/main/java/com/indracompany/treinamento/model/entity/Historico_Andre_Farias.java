@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "hintorico_andre_farias")
+@Table(name = "historico_andre_farias")
 public class Historico_Andre_Farias extends GenericEntity<Long>{
 
     private static final long serialVersionUID = -5824703733929187165L;

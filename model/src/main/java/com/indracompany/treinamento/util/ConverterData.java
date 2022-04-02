@@ -1,5 +1,7 @@
 package com.indracompany.treinamento.util;
 
+import com.indracompany.treinamento.exception.AplicacaoException;
+import com.indracompany.treinamento.exception.ExceptionValidacoes;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.DateFormat;
@@ -8,28 +10,36 @@ import java.util.Date;
 
 public class ConverterData {
 
-    public static void main(String[] args) throws Exception {
-
-        System.out.println(convertStringDate("23/10/1988"));
-
-    }
-
     public static Date convertStringDate(String dataString) throws Exception{
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = format.parse(dataString);
-        return date;
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = format.parse(dataString);
+            return date;
+        }catch (Exception e){
+            throw new AplicacaoException(ExceptionValidacoes.ERRO_DATA_INVALIDA);
+        }
     }
 
     public static Date convertStringDateInicial(String dataString) throws Exception{
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy mm:ss");
-        Date date = format.parse(dataString + " 00:01");
-        return date;
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy mm:ss");
+            Date date = format.parse(dataString + " 00:01");
+            return date;
+        }catch (Exception e){
+            throw new AplicacaoException(ExceptionValidacoes.ERRO_DATA_INVALIDA);
+        }
     }
 
     public static Date convertStringDateFinal(String dataString) throws Exception{
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy mm:ss");
-        Date date = format.parse(dataString + " 23:59");
-        return date;
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy mm:ss");
+            Date date = format.parse(dataString + " 23:59");
+            return date;
+        }catch (Exception e){
+            throw new AplicacaoException(ExceptionValidacoes.ERRO_DATA_INVALIDA);
+        }
     }
 
     public static String converDadaString(Date data) {
@@ -39,7 +49,7 @@ public class ConverterData {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             dateString = format.format(data);
         }catch (Exception e){
-            e.printStackTrace();
+            throw new AplicacaoException(ExceptionValidacoes.ERRO_DATA_INVALIDA);
         }
         return dateString;
     }
