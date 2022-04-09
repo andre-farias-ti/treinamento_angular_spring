@@ -1,0 +1,22 @@
+<p>Cadastrar Clientes</p>
+<form [formGroup]="formCliente" (ngSubmit)="enviar()">
+  <div class="mb-3">
+    <div class="mb-3">
+      <label class="form-label" for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" aria-describedby="nome" placeholder="Enter Nome" formControlName="nome">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label" >Email</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="cpf" class="form-label" >CPF</label>
+      <input type="text" class="form-control" id="cpf" aria-describedby="cpf" placeholder="Enter CPF" formControlName="cpf">
+    </div>
+    <div class="mb-3">
+      <label class="form-label"  for="observacaoes">Observações</label>
+      <textarea type="text" rows="3" class="form-control" id="observacaoes" aria-describedby="emailHelp" placeholder="Enter Observações" formControlName="observacoes"></textarea>
+    </div>
+</div>
+  <button [disabled]="!formCliente.valid" type="submit" class="btn btn-primary">Enviar</button>
+</form>

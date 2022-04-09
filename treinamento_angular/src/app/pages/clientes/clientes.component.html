@@ -1,4 +1,5 @@
 <p>Meus Clientes</p>
+<a type="button" class="btn btn-primary" routerLink="/clientes/cadastrar">Novo Cliente</a>
 <table class="table">
   <thead>
     <tr>
@@ -8,6 +9,7 @@
       <th scope="col">Email</th>
       <th scope="col">Ativo</th>
       <th scope="col">Observações</th>
+      <th scope="col">Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +20,18 @@
       <td>{{cliente.email}}</td>
       <td>{{cliente.ativo}}</td>
       <td>{{cliente.observacoes}}</td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

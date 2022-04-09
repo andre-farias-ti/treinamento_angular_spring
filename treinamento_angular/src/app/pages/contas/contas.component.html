@@ -1,1 +1,21 @@
 <p>Minhas Contas</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Agência</th>
+      <th scope="col">Conta</th>
+      <th scope="col">Saldo</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let conta of contas">
+      <td>{{conta.agencia}}</td>
+      <td>{{conta.numero}}</td>
+      <td>{{conta.saldo}}</td>
+      <td>{{conta.cliente.nome}}</td>
+      <td><button type="button" class="btn btn-primary" (click)="goCliente(conta.cliente.id)">Acessar Cliente</button></td>
+    </tr>
+  </tbody>
+</table>

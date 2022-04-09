@@ -18,9 +18,11 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 	
 	@Override
 	public Cliente salvar(Cliente cli) throws AplicacaoException {
-		
-		Cliente c = this.buscarCliente(cli.getCpf());
-		 
+		Cliente c = null;
+		if(cli.getId() != null){
+			c = this.buscarCliente(cli.getCpf());
+		}
+
 		if (c != null) {
 			
 			if (cli.getId() == null) {
